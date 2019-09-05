@@ -28,12 +28,23 @@ public class Main {
 
 	}
 
+	/*
+	 * number represents the index (ie the 1st, 2nd, etc.). Each value == the
+	 * previous index's value + that index's previous value. Until we get to the
+	 * beginning, where the previous and previous-1 index are 1 and 1, we must
+	 * travel backwards.
+	 */
 	public static int fibonacci(int number) {
 		if(number == 1 || number == 2) {
 			return 1;
 		}
 
 		return fibonacci(number - 1) + fibonacci(number - 2); //tail recursion
+	}
+
+	public boolean isPrime(int num) {
+
+		return true;
 	}
 
 }
