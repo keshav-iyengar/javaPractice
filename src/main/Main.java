@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		//doFibRecurs(13, 0, 1);
-		int i = fibonacci(7);
+		int i = (int) 5.42;
 		System.out.println(i);
 
 	}
@@ -42,9 +42,73 @@ public class Main {
 		return fibonacci(number - 1) + fibonacci(number - 2); //tail recursion
 	}
 
-	public boolean isPrime(int num) {
+	public static boolean isPrime(int num) {
+		boolean flag = true;
+		if(num == 0) return false;
+		if(num != 1 || num != 2) {
+			for(int i = 2; i < num; i++) {
+				if(num % i == 0) {
+					flag = false;
+					break;
+				}
+			}
+		}
+		return flag;
+	}
 
+	public static boolean isPalindrome(String input) {
+		if(input.length() % 2 == 0) {
+			for(int i = 0; i < input.length() / 2; i++) {
+				if(input.charAt(i) == input.charAt(input.length() - 1 - i)) continue;
+				else return false;
+			}
+		} else {
+			for(int i = 0; i < ((input.length() + 1) / 2) - 1; i++) {
+				if(input.charAt(i) == input.charAt(input.length() - 1 - i)) continue;
+				else return false;
+			}
+		}
 		return true;
+	}
+
+	//charAt length-1, length-1 - 1, etc.
+	public static String reverse(String input) {
+		if(input == null || input.isEmpty()) {
+			return input;
+		}
+		return input.charAt(input.length() - 1) + reverse(input.substring(0, input.length() - 1));
+	}
+
+	public static boolean isIntPalindrome(int num) {
+
+		return num == reverseNum(num);
+	}
+
+	public static int reverseNum(int num) {
+
+		if(num < 10) return num;
+
+		int exp = 0;
+		int val = num;
+		while(val > 10) {
+			exp++;
+			val = (int) val / 10;
+		}
+
+		return (num % 10) * (int) Math.pow(10, exp) + reverseNum(num / 10);
+
+	}
+
+	public static int cubeSum(int num) {
+
+		if(num < 10) return (int) Math.pow(num, 3);
+
+		return (int) (Math.pow((num % 10), 3) + cubeSum((int) num / 10));
+
+	}
+
+	public static boolean isArmstrongNum(int num) {
+		return num == cubeSum(num);
 	}
 
 }
