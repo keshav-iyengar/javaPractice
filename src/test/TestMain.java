@@ -66,6 +66,7 @@ public class TestMain {
 		assertEquals(Main.isArmstrongNum(153), true);
 		assertEquals(Main.isArmstrongNum(152), false);
 		assertEquals(Main.isArmstrongNum(0), true);
+		assertEquals(Main.isArmstrongNum(12), false);
 
 	}
 
