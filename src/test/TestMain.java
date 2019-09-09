@@ -70,4 +70,12 @@ public class TestMain {
 
 	}
 
+	@Test
+	public void testDoFactorial() {
+		assertEquals(Main.doFactorial(0), 1);
+		assertEquals(Main.doFactorial(1), 1);
+		assertEquals(Main.doFactorial(2), 2);
+		assertEquals(Main.doFactorial(4), 24);
+	}
+
 }

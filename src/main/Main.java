@@ -111,4 +111,9 @@ public class Main {
 		return num == cubeSum(num);
 	}
 
+	public static int doFactorial(int num) {
+		if(num == 0) return 1;
+		return num * doFactorial(num - 1);
+	}
+
 }
