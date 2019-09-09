@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -114,6 +116,14 @@ public class Main {
 	public static int doFactorial(int num) {
 		if(num == 0) return 1;
 		return num * doFactorial(num - 1);
+	}
+
+	public static ArrayList<Integer> removeDuplicates(int[] arr) {
+		ArrayList<Integer> listWithoutDuplicates = new ArrayList<Integer>();
+		for(int num : arr) {
+			if(!listWithoutDuplicates.contains(num)) listWithoutDuplicates.add(num);
+		}
+		return listWithoutDuplicates;
 	}
 
 }

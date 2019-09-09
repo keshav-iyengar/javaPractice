@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -76,6 +78,13 @@ public class TestMain {
 		assertEquals(Main.doFactorial(1), 1);
 		assertEquals(Main.doFactorial(2), 2);
 		assertEquals(Main.doFactorial(4), 24);
+	}
+
+	@Test
+	public void testRemoveDuplicates() {
+		assertEquals(Main.removeDuplicates(new int[] { 1, 2, 3 }), Arrays.asList(1, 2, 3));
+		assertEquals(Main.removeDuplicates(new int[] { 1, 1, 1 }), Arrays.asList(1));
+		assertEquals(Main.removeDuplicates(new int[] { 1, 2, 3, 4, 3, 5, 6, 2 }), Arrays.asList(1, 2, 3, 4, 5, 6));
 	}
 
 }
