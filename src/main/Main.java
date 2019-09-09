@@ -126,4 +126,66 @@ public class Main {
 		return listWithoutDuplicates;
 	}
 
+	public static int greatestCommonDivisor(int num1, int num2) {
+
+		if(num1 == 0) return num2;
+		else if(num2 == 0) return num1;
+
+		if(num1 < 0) num1 = num1 * (-1);
+		if(num2 < 0) num2 = num2 * (-1);
+		int higherNum, lowerNum;
+		if(num1 > num2) {
+			higherNum = num1;
+			lowerNum = num2;
+		} else {
+			higherNum = num2;
+			lowerNum = num1;
+		}
+
+		if(higherNum % lowerNum == 0) return lowerNum;
+		else {
+			int divisor = 0;
+			for(int i = lowerNum - 1; i > 0; i--) {
+				divisor = i;
+				if((higherNum % i == 0) && (lowerNum % i == 0)) break;
+			}
+			return divisor;
+		}
+	}
+
+	public static int getSquareRoot(int num) {
+
+		if(num == 0) return 0;
+
+		int counter = num;
+		while(counter > 0) {
+			if(counter * counter == num) return counter;
+			else counter--;
+		}
+		return 0;
+	}
+
+	public static int[] reverseArray(int[] arr) {
+		int[] reversed = new int[arr.length];
+		int index = 0;
+		for(int i = arr.length - 1; i >= 0; i--) {
+			reversed[index] = arr[i];
+			index++;
+		}
+		return reversed;
+
+	}
+
+	public static boolean isAnagram(String str1, String str2) {
+
+		if(str1.length() != str2.length()) return false;
+
+		for(int i = 0; i < str1.length(); i++) {
+			if(str2.toLowerCase().contains(String.valueOf(str1.charAt(i)).toLowerCase())) continue;
+			else return false;
+		}
+
+		return true;
+	}
+
 }

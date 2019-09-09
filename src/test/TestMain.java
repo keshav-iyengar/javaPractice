@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -85,6 +86,39 @@ public class TestMain {
 		assertEquals(Main.removeDuplicates(new int[] { 1, 2, 3 }), Arrays.asList(1, 2, 3));
 		assertEquals(Main.removeDuplicates(new int[] { 1, 1, 1 }), Arrays.asList(1));
 		assertEquals(Main.removeDuplicates(new int[] { 1, 2, 3, 4, 3, 5, 6, 2 }), Arrays.asList(1, 2, 3, 4, 5, 6));
+	}
+
+	@Test
+	public void testGreatestCommonDivisor() {
+		assertEquals(Main.greatestCommonDivisor(12, 6), 6);
+		assertEquals(Main.greatestCommonDivisor(12, 8), 4);
+		assertEquals(Main.greatestCommonDivisor(12, -8), 4);
+		assertEquals(Main.greatestCommonDivisor(-12, 8), 4);
+		assertEquals(Main.greatestCommonDivisor(-12, -8), 4);
+		assertEquals(Main.greatestCommonDivisor(12, 0), 12);
+		assertEquals(Main.greatestCommonDivisor(0, 12), 12);
+		assertEquals(Main.greatestCommonDivisor(0, 0), 0);
+
+	}
+
+	@Test
+	public void testGetSquareRoot() {
+		assertEquals(Main.getSquareRoot(25), 5);
+	}
+
+	@Test
+	public void testReverseArray() {
+		assertArrayEquals(Main.reverseArray(new int[] { 1, 2, 3 }), new int[] { 3, 2, 1 });
+		assertArrayEquals(Main.reverseArray(new int[] { 1, 2, 3, 2, 3 }), new int[] { 3, 2, 3, 2, 1 });
+		assertArrayEquals(Main.reverseArray(new int[] { 1 }), new int[] { 1 });
+	}
+
+	@Test
+	public void testIsAnagram() {
+		assertEquals(Main.isAnagram("army", "mary"), true);
+		assertEquals(Main.isAnagram("ARmy", "mary"), true);
+		assertEquals(Main.isAnagram("army", "maryy"), false);
+		assertEquals(Main.isAnagram("abcd", "abab"), false);
 	}
 
 }
