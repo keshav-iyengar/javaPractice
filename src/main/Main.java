@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -186,6 +187,26 @@ public class Main {
 		}
 
 		return true;
+	}
+
+	public static int findValue(int[] arr, int find) {
+
+		Arrays.sort(arr);
+		int index = 0;
+
+		if(arr.length == 1) {
+
+			if(arr[index] == find) return index;
+			else throw new IllegalArgumentException("Value not found.");
+
+		} else if(arr.length % 2 == 0) index = arr.length / 2;
+
+		else index = (arr.length - 1) / 2;
+
+		if(arr[index] == find) return index;
+		else if(arr[index] > find) return findValue(Arrays.copyOfRange(arr, 0, index), find);
+		else return findValue(Arrays.copyOfRange(arr, index + 1, arr.length), find) + index + 1;
+
 	}
 
 }
