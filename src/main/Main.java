@@ -8,8 +8,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		//doFibRecurs(13, 0, 1);
-		int i = (int) 5.42;
-		System.out.println(i);
+		Integer a = new Integer(2);
+		Integer b = new Integer(2);
 
 	}
 
@@ -173,6 +173,7 @@ public class Main {
 			reversed[index] = arr[i];
 			index++;
 		}
+
 		return reversed;
 
 	}
@@ -189,7 +190,7 @@ public class Main {
 		return true;
 	}
 
-	public static int findValue(int[] arr, int find) {
+	public static int binarySearch(int[] arr, int find) {
 
 		Arrays.sort(arr);
 		int index = 0;
@@ -204,9 +205,35 @@ public class Main {
 		else index = (arr.length - 1) / 2;
 
 		if(arr[index] == find) return index;
-		else if(arr[index] > find) return findValue(Arrays.copyOfRange(arr, 0, index), find);
-		else return findValue(Arrays.copyOfRange(arr, index + 1, arr.length), find) + index + 1;
+		else if(arr[index] > find) return binarySearch(Arrays.copyOfRange(arr, 0, index), find);
+		else return binarySearch(Arrays.copyOfRange(arr, index + 1, arr.length), find) + index + 1;
 
+	}
+
+	public static char findFirstNonRepeatedChar(String str) {
+
+		StringBuilder sb = new StringBuilder(str.toLowerCase());
+		char firstChar = sb.charAt(0);
+		if(sb.toString().length() == 1) return firstChar;
+
+		else {
+			int counter;
+			for(int c = 0; c < sb.length(); c++) {
+				counter = 0;
+				firstChar = sb.charAt(c);
+				for(int i = c + 1; i < sb.length(); i++) {
+					if(sb.charAt(i) == firstChar) {
+						sb.deleteCharAt(i);
+						counter++;
+					}
+				}
+				if(counter != 0) {
+					if(c == (sb.length() - 1)) throw new IllegalArgumentException("No non repeated chars.");
+					else continue;
+				} else return firstChar;
+			}
+		}
+		return firstChar;
 	}
 
 }

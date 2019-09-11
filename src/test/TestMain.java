@@ -1,7 +1,10 @@
 package test;
 
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 
@@ -123,14 +126,26 @@ public class TestMain {
 
 	@Test
 	public void testBinarySearch() {
-		assertEquals(Main.findValue(new int[] { 1, 2, 3 }, 2), 1);
-		assertEquals(Main.findValue(new int[] { 1, 2, 3, 4 }, 2), 1);
-		assertEquals(Main.findValue(new int[] { 1, 2, 3, 4 }, 3), 2);
-		assertEquals(Main.findValue(new int[] { 1, 2, 3, 4, 5 }, 4), 3);
-		assertEquals(Main.findValue(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 8), 7);
-		assertEquals(Main.findValue(new int[] { 1, 2, 1, 4, 1, 5 }, 4), 4);
-		assertEquals(Main.findValue(new int[] { 1 }, 1), 0);
+		assertEquals(Main.binarySearch(new int[] { 1, 2, 3 }, 2), 1);
+		assertEquals(Main.binarySearch(new int[] { 1, 2, 3, 4 }, 2), 1);
+		assertEquals(Main.binarySearch(new int[] { 1, 2, 3, 4 }, 3), 2);
+		assertEquals(Main.binarySearch(new int[] { 1, 2, 3, 4, 5 }, 4), 3);
+		assertEquals(Main.binarySearch(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 8), 7);
+		assertEquals(Main.binarySearch(new int[] { 1, 2, 1, 4, 1, 5 }, 4), 4);
+		assertEquals(Main.binarySearch(new int[] { 1 }, 1), 0);
+		assertThrows(IllegalArgumentException.class, () -> {
+			Main.binarySearch(new int[] { 1, 2, 3 }, 4);
+		});
+		assertThat(Main.binarySearch(new int[] { 1, 2, 3 }, 2), not(0));
+	}
 
+	@Test
+	public void testFindFirstNonRepeatedChar() {
+		assertEquals(Main.findFirstNonRepeatedChar("ABACCBDEF"), 'd');
+		assertEquals(Main.findFirstNonRepeatedChar("ABCDA"), 'b');
+		assertThrows(IllegalArgumentException.class, () -> {
+			Main.findFirstNonRepeatedChar("AABB");
+		});
 	}
 
 }
