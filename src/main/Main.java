@@ -2,14 +2,24 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		//doFibRecurs(13, 0, 1);
-		Integer a = new Integer(2);
-		Integer b = new Integer(2);
+		Node node1AA = new Node(4);
+		Node node1AB = new Node(5);
+		Node node1A = new Node(2, node1AA, node1AB);
+
+		Node node1BA = new Node(6);
+		Node node1B = new Node(3, node1BA);
+
+		Node node1 = new Node(1, node1A, node1B);
+		node1.setIsRootNode(true);
+
+		BinaryTree tree = new BinaryTree(node1);
+		System.out.println(displayTree(tree.getRootNode()));
 
 	}
 
@@ -234,6 +244,32 @@ public class Main {
 			}
 		}
 		return firstChar;
+	}
+
+	public static int findMiddleElement(LinkedList<Integer> list) {
+
+		return list.get(list.size() / 2);
+
+	}
+
+	public static String displayTree(Node rootNode) {
+
+		Node leftChild = rootNode.getLeftChild();
+		Node rightChild = rootNode.getRightChild();
+
+		StringBuilder sb = new StringBuilder(rootNode.isRootNode ? String.valueOf(rootNode.getData() + " ") : "");
+
+		if(leftChild != null) {
+			sb.append(String.valueOf(leftChild.getData() + " "));
+			if(rightChild != null) {
+				sb.append(String.valueOf(rightChild.getData() + " "));
+				sb.append(displayTree(leftChild) + displayTree(rightChild));
+			} else {
+				sb.append(displayTree(leftChild));
+			}
+		}
+		return sb.toString();
+
 	}
 
 }

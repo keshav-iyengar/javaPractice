@@ -11,7 +11,9 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.BinaryTree;
 import main.Main;
+import main.Node;
 
 public class TestMain {
 
@@ -146,6 +148,24 @@ public class TestMain {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Main.findFirstNonRepeatedChar("AABB");
 		});
+	}
+
+	@Test
+	public void testDisplayTree() {
+		Node node1AA = new Node(4);
+		Node node1AB = new Node(5);
+		Node node1A = new Node(2, node1AA, node1AB);
+
+		Node node1BA = new Node(6);
+		Node node1B = new Node(3, node1BA);
+
+		Node node1 = new Node(1, node1A, node1B);
+		node1.setIsRootNode(true);
+
+		BinaryTree tree = new BinaryTree(node1);
+
+		assertEquals(Main.displayTree(tree.getRootNode()), "1 2 3 4 5 6 ");
+
 	}
 
 }
