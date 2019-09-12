@@ -168,4 +168,12 @@ public class TestMain {
 
 	}
 
+	@Test
+	public void testQuickSort() {
+		assertArrayEquals(Main.quickSort(new int[] {}), new int[] {});
+		assertArrayEquals(Main.quickSort(new int[] { 1 }), new int[] { 1 });
+		assertArrayEquals(Main.quickSort(new int[] { 1, 2, 4, 3, 5 }), new int[] { 1, 2, 3, 4, 5 });
+		assertArrayEquals(Main.quickSort(new int[] { 1, 5, 3, 4, 8, 2, 9 }), new int[] { 1, 2, 3, 4, 5, 8, 9 });
+	}
+
 }

@@ -272,4 +272,75 @@ public class Main {
 
 	}
 
+	public static int[] quickSort(int[] arr) {
+
+		if(arr.length == 0 || arr.length == 1) return arr;
+
+		else {
+			//identify pivot (rightmost)
+			int pivotIndex = arr.length - 1;
+			int pivot = arr[pivotIndex];
+
+			//find length of left and right arrays
+			int rightArrayLength = 0, leftArrayLength = 0;
+			for(int i : arr) {
+				if(i < pivot) {
+					leftArrayLength++;
+				} else {
+					rightArrayLength++;
+				}
+			}
+			int[] rightArray = new int[rightArrayLength];
+			int[] leftArray = new int[leftArrayLength];
+
+			//put pivot in right array
+			rightArray[0] = pivot;
+
+			//put < pivot in left, > pivot in right
+			int indexRight = 1;
+			int indexLeft = 0;
+			for(int i = 0; i < pivotIndex; i++) {
+				if(arr[i] < pivot) {
+					leftArray[indexLeft] = arr[i];
+					indexLeft++;
+				} else {
+					rightArray[indexRight] = arr[i];
+					indexRight++;
+				}
+			}
+
+			//sort left and right and combine
+			int[] sortedArray = new int[leftArrayLength + rightArrayLength];
+			if(leftArrayLength == 1) {
+				if(rightArrayLength == 1) {
+					sortedArray = concatArrays(leftArray, rightArray);
+				} else {
+					sortedArray = concatArrays(leftArray, quickSort(rightArray));
+				}
+			} else {
+				if(rightArrayLength == 1) {
+					sortedArray = concatArrays(quickSort(leftArray), rightArray);
+				} else {
+					sortedArray = concatArrays(quickSort(leftArray), quickSort(rightArray));
+				}
+			}
+
+			return sortedArray;
+		}
+
+	}
+
+	public static int[] concatArrays(int[] a1, int[] a2) {
+
+		int[] combined = new int[a1.length + a2.length];
+		for(int i = 0; i < a1.length; i++) {
+			combined[i] = a1[i];
+		}
+		for(int i = a1.length; i < combined.length; i++) {
+			combined[i] = a2[i - a1.length];
+		}
+
+		return combined;
+	}
+
 }
