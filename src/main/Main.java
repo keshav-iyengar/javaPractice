@@ -343,4 +343,74 @@ public class Main {
 		return combined;
 	}
 
+	public static int[] swapElements(int[] arr, int index1, int index2) {
+
+		if(index1 >= arr.length || index2 >= arr.length)
+			throw new IndexOutOfBoundsException("One or more index out of bounds.");
+		else {
+			int temp = arr[index1];
+			arr[index1] = arr[index2];
+			arr[index2] = temp;
+			return arr;
+		}
+
+	}
+
+	public static int[] insertionSort(int[] arr) {
+
+		int[] sortedArray = arr;
+		if(arr.length == 0 || arr.length == 1) return sortedArray;
+		else {
+			int comparer; //value to be shifted
+			int comparerIndex; //comparer index that changes as we shift
+			int origComparerIndex = 1; //retain original comparer index
+			int compared; //value to be compared against
+
+			while(origComparerIndex < sortedArray.length) {
+
+				comparerIndex = origComparerIndex;
+				comparer = sortedArray[comparerIndex];
+
+				innerloop: for(int comparedIndex = comparerIndex - 1; comparedIndex >= 0; comparedIndex--) {
+
+					compared = sortedArray[comparedIndex];
+
+					if(comparer < compared) {
+						sortedArray = swapElements(sortedArray, comparedIndex, comparerIndex);
+						comparerIndex = comparedIndex;
+						comparer = sortedArray[comparerIndex];
+					} else {
+						origComparerIndex++;
+						break innerloop;
+					}
+				}
+			}
+			return sortedArray;
+		}
+	}
+
+	public static int[] recursiveInsertionSort(int[] arr, int comparerIndex) {
+
+		int[] sortedArray = arr;
+		if(arr.length == 0 || arr.length == 1 || comparerIndex == 0 || comparerIndex >= arr.length) return sortedArray;
+		else {
+
+			int origComparerIndex = comparerIndex; //placeholder for current comparer position
+			int comparedIndex = comparerIndex - 1;
+
+			if(sortedArray[comparerIndex] < sortedArray[comparedIndex]) {
+				sortedArray = swapElements(sortedArray, comparedIndex, comparerIndex);
+				comparerIndex = comparedIndex;
+				if(comparerIndex == 0) sortedArray = recursiveInsertionSort(sortedArray, origComparerIndex++);
+				else sortedArray = recursiveInsertionSort(sortedArray, comparerIndex);
+			} else {
+				comparerIndex++;
+				sortedArray = recursiveInsertionSort(sortedArray, comparerIndex);
+			}
+
+		}
+
+		return sortedArray;
+	}
+
 }

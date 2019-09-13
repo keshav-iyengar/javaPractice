@@ -176,4 +176,19 @@ public class TestMain {
 		assertArrayEquals(Main.quickSort(new int[] { 1, 5, 3, 4, 8, 2, 9 }), new int[] { 1, 2, 3, 4, 5, 8, 9 });
 	}
 
+	@Test
+	public void testInsertionSort() {
+		assertArrayEquals(Main.insertionSort(new int[] { 5, 4, 3, 2, 1 }), new int[] { 1, 2, 3, 4, 5 });
+		assertArrayEquals(Main.insertionSort(new int[] { 5, 5, 3, 2, 1 }), new int[] { 1, 2, 3, 5, 5 });
+		assertArrayEquals(Main.insertionSort(new int[] { 5, 4, 3, 4, 5, 6 }), new int[] { 3, 4, 4, 5, 5, 6 });
+	}
+
+	@Test
+	public void testRecursiveInsertionSort() {
+		assertArrayEquals(Main.recursiveInsertionSort(new int[] { 5, 4, 3, 2, 1 }, 1), new int[] { 1, 2, 3, 4, 5 });
+		assertArrayEquals(Main.recursiveInsertionSort(new int[] { 5, 5, 3, 2, 1 }, 1), new int[] { 1, 2, 3, 5, 5 });
+		assertArrayEquals(Main.recursiveInsertionSort(new int[] { 5, 4, 3, 4, 5, 6 }, 1),
+				new int[] { 3, 4, 4, 5, 5, 6 });
+	}
+
 }
