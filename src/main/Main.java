@@ -413,4 +413,23 @@ public class Main {
 		return sortedArray;
 	}
 
+	public static int[] bubbleSort(int[] arr, int index) {
+
+		if(arr.length == 0 || arr.length == 1) return arr;
+
+		else {
+
+			int[] sortedArray = arr;
+			int index1 = index;
+			int index2 = index - 1;
+
+			if(sortedArray[index1] < sortedArray[index2]) {
+
+			}
+
+		}
+
+		return arr;
+	}
+
 }
