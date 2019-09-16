@@ -413,23 +413,26 @@ public class Main {
 		return sortedArray;
 	}
 
-	public static int[] bubbleSort(int[] arr, int index) {
+	public static int[] bubbleSort(int[] arr) {
 
 		if(arr.length == 0 || arr.length == 1) return arr;
-
 		else {
-
+			int sortCount = 0;
 			int[] sortedArray = arr;
-			int index1 = index;
-			int index2 = index - 1;
+			int index1 = 1;
+			int index2 = index1 - 1;
 
-			if(sortedArray[index1] < sortedArray[index2]) {
-
+			while(index1 < sortedArray.length) {
+				if(sortedArray[index1] < sortedArray[index2]) {
+					sortCount++;
+					sortedArray = swapElements(sortedArray, index1, index2);
+				}
+				index1++;
+				index2 = index1 - 1;
 			}
-
+			if(sortCount == 0) return sortedArray;
+			else return bubbleSort(sortedArray);
 		}
-
-		return arr;
 	}
 
 }
