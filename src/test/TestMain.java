@@ -232,4 +232,22 @@ public class TestMain {
 		assertArrayEquals(Main.addMatrices(matrix1, matrix2), result);
 	}
 
+	@Test
+	public void testMultiplyMatrices() {
+		int[] firstCol = { 1, 4 };
+		int[] secondCol = { 2, 5 };
+		int[] thirdCol = { 3, 6 };
+		int[][] matrix1 = { firstCol, secondCol, thirdCol };
+
+		firstCol = new int[] { 1, 2, 3 };
+		secondCol = new int[] { 4, 5, 6 };
+		int[][] matrix2 = { firstCol, secondCol };
+
+		firstCol = new int[] { 14, 32 };
+		secondCol = new int[] { 32, 77 };
+		int[][] result = { firstCol, secondCol };
+
+		assertArrayEquals(Main.multiplyMatrices(matrix1, matrix2), result);
+	}
+
 }

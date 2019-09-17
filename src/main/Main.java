@@ -493,4 +493,24 @@ public class Main {
 		return result;
 	}
 
+	public static int[][] multiplyMatrices(int[][] m1, int[][] m2) {
+
+		int m1Rows = m1[0].length;
+		int m1Cols = m1.length;
+		int m2Rows = m2[0].length;
+		int m2Cols = m2.length;
+
+		int[][] result = new int[m2Cols][m1Rows];
+
+		for(int m1Row = 0; m1Row < m1Rows; m1Row++) {
+			for(int m2Col = 0; m2Col < m2Cols; m2Col++) {
+				for(int m1Col = 0; m1Col < m1Cols; m1Col++) {
+					result[m2Col][m1Row] += m1[m1Col][m1Row] * m2[m2Col][m1Col];
+				}
+			}
+		}
+
+		return result;
+	}
+
 }
