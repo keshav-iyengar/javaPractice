@@ -200,7 +200,6 @@ public class TestMain {
 
 	@Test
 	public void testTransposeMatrix() {
-
 		int[] firstCol = { 6, 1 };
 		int[] secondCol = { 4, -9 };
 		int[] thirdCol = { 24, 8 };
@@ -211,6 +210,26 @@ public class TestMain {
 		int[][] transposedMatrix = { firstCol, secondCol };
 
 		assertArrayEquals(Main.transposeMatrix(matrix), transposedMatrix);
+	}
+
+	@Test
+	public void testAddMatrices() {
+		int[] firstCol = { 1, 3 };
+		int[] secondCol = { 2, 0 };
+		int[] thirdCol = { 3, 2 };
+		int[][] matrix1 = { firstCol, secondCol, thirdCol };
+
+		firstCol = new int[] { 2, 4 };
+		secondCol = new int[] { 5, 8 };
+		thirdCol = new int[] { 6, 9 };
+		int[][] matrix2 = { firstCol, secondCol, thirdCol };
+
+		firstCol = new int[] { 3, 7 };
+		secondCol = new int[] { 7, 8 };
+		thirdCol = new int[] { 9, 11 };
+		int[][] result = { firstCol, secondCol, thirdCol };
+
+		assertArrayEquals(Main.addMatrices(matrix1, matrix2), result);
 	}
 
 }
