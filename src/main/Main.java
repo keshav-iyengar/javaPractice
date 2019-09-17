@@ -435,4 +435,51 @@ public class Main {
 		}
 	}
 
+	public static String swapChars(String str, int index1, int index2) {
+
+		StringBuilder sb = new StringBuilder(str);
+		char c1 = str.charAt(index1);
+		char c2 = str.charAt(index2);
+		sb.setCharAt(index1, c2);
+		sb.setCharAt(index2, c1);
+		return sb.toString();
+
+	}
+
+	//	public static void stringPermutations(String str) {
+	//
+	//		StringBuilder sb = new StringBuilder(str);
+	//		ArrayList<String> perms = new ArrayList<String>();
+	//		perms.add(str);
+	//
+	//		for(char c : str.toCharArray()) {
+	//			for(char ch : str.toCharArray()) {
+	//				perms.add(swapChars(str, str.indexOf(c), str.indexOf(ch)));
+	//			}
+	//		}
+	//		int index = 0;
+	//		for(char c : str.toCharArray()) {
+	//			for(char ch : str.toCharArray()) {
+	//				sb.setCharAt(str.indexOf(ch), c);
+	//				perms.add(sb.toString());	
+	//			}
+	//		}
+	//
+	//	}
+
+	public static int[][] transposeMatrix(int[][] m) {
+
+		int rows = m[1].length;
+		int cols = m.length;
+		int[][] transposed = new int[rows][cols];
+
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < cols; c++) {
+				transposed[r][c] = m[c][r];
+			}
+		}
+		return transposed;
+
+	}
+
 }

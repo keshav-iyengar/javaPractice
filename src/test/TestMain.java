@@ -198,4 +198,19 @@ public class TestMain {
 		assertArrayEquals(Main.bubbleSort(new int[] { 5, 4, 3, 4, 5, 6 }), new int[] { 3, 4, 4, 5, 5, 6 });
 	}
 
+	@Test
+	public void testTransposeMatrix() {
+
+		int[] firstCol = { 6, 1 };
+		int[] secondCol = { 4, -9 };
+		int[] thirdCol = { 24, 8 };
+		int[][] matrix = { firstCol, secondCol, thirdCol };
+
+		firstCol = new int[] { 6, 4, 24 };
+		secondCol = new int[] { 1, -9, 8 };
+		int[][] transposedMatrix = { firstCol, secondCol };
+
+		assertArrayEquals(Main.transposeMatrix(matrix), transposedMatrix);
+	}
+
 }
