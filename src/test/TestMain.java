@@ -266,4 +266,11 @@ public class TestMain {
 		assertEquals(Main.reverseList(list1), list2);
 	}
 
+	@Test
+	public void testSortLinkedList() {
+		LinkedList<Integer> list1 = new LinkedList<Integer>(Arrays.asList(1, 2, 5, 4, 3, 7, 6));
+		LinkedList<Integer> list2 = new LinkedList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+		assertEquals(Main.sortLinkedList(list1), list2);
+	}
+
 }

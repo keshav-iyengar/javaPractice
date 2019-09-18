@@ -539,4 +539,26 @@ public class Main {
 		}
 
 	}
+
+	public static LinkedList<Integer> swapListElements(LinkedList<Integer> list, int index1, int index2) {
+
+		int temp = list.get(index2);
+		list.set(index2, list.get(index1));
+		list.set(index1, temp);
+		return list;
+
+	}
+
+	public static LinkedList<Integer> sortLinkedList(LinkedList<Integer> list) {
+
+		int sortCount = 0;
+		for(int i = 1; i < list.size(); i++) {
+			if(list.get(i) < list.get(i - 1)) {
+				swapListElements(list, i - 1, i);
+				sortCount++;
+			}
+		}
+		if(sortCount != 0) return sortLinkedList(list);
+		else return list;
+	}
 }
