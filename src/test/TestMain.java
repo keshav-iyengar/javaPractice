@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -248,6 +249,21 @@ public class TestMain {
 		int[][] result = { firstCol, secondCol };
 
 		assertArrayEquals(Main.multiplyMatrices(matrix1, matrix2), result);
+	}
+
+	//	@Test
+	//	public void testRemoveWhitespace() {
+	//
+	//		String str1 = "ABC DEF GHI";
+	//		String str2 = "ABCDEFGHI";
+	//
+	//		assertEquals(Main.removeWhitespace(str1), str2);
+	//	}
+	@Test
+	public void testReverseList() {
+		LinkedList<Integer> list1 = new LinkedList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+		LinkedList<Integer> list2 = new LinkedList<Integer>(Arrays.asList(5, 4, 3, 2, 1));
+		assertEquals(Main.reverseList(list1), list2);
 	}
 
 }

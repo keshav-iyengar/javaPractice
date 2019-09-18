@@ -19,7 +19,15 @@ public class Main {
 		node1.setIsRootNode(true);
 
 		BinaryTree tree = new BinaryTree(node1);
-		System.out.println(displayTree(tree.getRootNode()));
+
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+
+		list = reverseList(list);
+		for(int i : list) System.out.print(i + " ");
 
 	}
 
@@ -509,8 +517,26 @@ public class Main {
 				}
 			}
 		}
-
 		return result;
 	}
 
+	//	public static String removeWhitespace(String str) {
+	//		String st = str;
+	//		st.replaceAll("\\s", "");
+	//		return st;
+	//	}
+
+	public static LinkedList<Integer> reverseList(LinkedList<Integer> list) {
+
+		if(list.size() == 0 || list.size() == 1) return list;
+
+		else {
+			LinkedList<Integer> reversed = new LinkedList<Integer>();
+			for(int i = 0; i < list.size(); i++) {
+				reversed.add(i, list.get(list.size() - 1 - i));
+			}
+			return reversed;
+		}
+
+	}
 }
