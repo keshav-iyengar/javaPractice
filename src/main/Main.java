@@ -561,4 +561,68 @@ public class Main {
 		if(sortCount != 0) return sortLinkedList(list);
 		else return list;
 	}
+
+	//	public static int[] iterativeQuickSort(int[] arr) {
+	//
+	//		while(!isSorted(arr)) {
+	//
+	//			int pivot = arr[arr.length / 2];
+	//
+	//			int leftArrayLength = 0, rightArrayLength = 0;
+	//
+	//			for(int i : arr) {
+	//				if(i < pivot) leftArrayLength++;
+	//				else rightArrayLength++;
+	//			}
+	//
+	//			int[] leftArray = new int[leftArrayLength];
+	//			int[] rightArray = new int[rightArrayLength];
+	//
+	//			return arr;
+	//
+	//		}
+	//		return arr;
+	//	}
+
+	public static boolean isSorted(int[] arr) {
+
+		for(int i = 1; i < arr.length; i++) {
+			if(arr[i] > arr[i - 1]) continue;
+			else return false;
+		}
+		return true;
+	}
+
+	public static int[] bucketSort(int[] arr) {
+
+		//HashMap<Integer, ArrayList<Integer>> buckets = new HashMap<Integer, ArrayList<Integer>>();
+
+		if(arr.length < 9) return bubbleSort(arr);
+		else {
+			//determine num of buckets
+			int setsOfTen = (arr.length % 10 == 0) ? (arr.length / 10) : ((arr.length / 10) + 1);
+			ArrayList<ArrayList<Integer>> buckets = new ArrayList<ArrayList<Integer>>();
+
+			for(int i = 0; i < setsOfTen; i++) {
+				buckets.add(new ArrayList<Integer>());
+			}
+
+			int rangeMax;
+			int rangeMin;
+			for(int i : arr) {
+				for(ArrayList<Integer> b : buckets) {
+					rangeMax = (buckets.indexOf(b) * 10) + 9;
+					rangeMin = rangeMax - 9;
+					if(i >= rangeMin && i <= rangeMax) {
+						buckets.get(buckets.indexOf(b)).add(i);
+						break;
+					}
+				}
+			}
+
+		}
+
+		return arr;
+	}
+
 }
