@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -271,6 +272,30 @@ public class TestMain {
 		LinkedList<Integer> list1 = new LinkedList<Integer>(Arrays.asList(1, 2, 5, 4, 3, 7, 6));
 		LinkedList<Integer> list2 = new LinkedList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
 		assertEquals(Main.sortLinkedList(list1), list2);
+	}
+
+	@Test
+	public void testConcatArraysInList() {
+		int[] arr1 = { 1, 2, 3, 4 };
+		int[] arr2 = { 5, 6, 7 };
+		int[] arr3 = { 8, 9 };
+
+		ArrayList<int[]> list = new ArrayList<int[]>();
+		list.add(arr1);
+		list.add(arr2);
+		list.add(arr3);
+
+		assertArrayEquals(Main.concatArraysInList(list), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+	}
+
+	@Test
+	public void testBucketSort() {
+		int[] arr1 = { 1, 2, 3, 4, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9 };
+		int[] arr2 = { 1, 2, 3, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 };
+		//		int[] arr1 = { 1, 4, 5, 3, 2 };
+		//		int[] arr2 = { 1, 2, 3, 4, 5 };
+		assertArrayEquals(Main.bucketSort(arr1), arr2);
+
 	}
 
 }

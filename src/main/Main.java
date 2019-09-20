@@ -595,18 +595,23 @@ public class Main {
 
 	public static int[] bucketSort(int[] arr) {
 
-		//HashMap<Integer, ArrayList<Integer>> buckets = new HashMap<Integer, ArrayList<Integer>>();
-
 		if(arr.length < 9) return bubbleSort(arr);
 		else {
 			//determine num of buckets
-			int setsOfTen = (arr.length % 10 == 0) ? (arr.length / 10) : ((arr.length / 10) + 1);
-			ArrayList<ArrayList<Integer>> buckets = new ArrayList<ArrayList<Integer>>();
+			int maxValue = findMaxValue(arr);
+			int setsOfTen = 1;
+			if(maxValue > 10) {
+				for(int i = 10; i <= (maxValue + (10 - (maxValue % 10))); i += 10) {
+					if(maxValue <= i) break;
+					else setsOfTen++;
+				}
+			}
 
+			ArrayList<ArrayList<Integer>> buckets = new ArrayList<ArrayList<Integer>>();
 			for(int i = 0; i < setsOfTen; i++) {
 				buckets.add(new ArrayList<Integer>());
 			}
-
+			//place values into appropriate buckets
 			int rangeMax;
 			int rangeMin;
 			for(int i : arr) {
@@ -620,9 +625,58 @@ public class Main {
 				}
 			}
 
+			//convert each bucket into an array for sorting
+			ArrayList<int[]> bucketArrays = new ArrayList<int[]>();
+			for(ArrayList<Integer> bucket : buckets) {
+				int[] temp = new int[bucket.size()];
+				int index = 0;
+				for(int i : bucket) {
+					temp[index] = i;
+					index++;
+				}
+				bucketArrays.add(bubbleSort(temp));
+			}
+			//concat each array and sort the result
+			return bubbleSort(concatArraysInList(bucketArrays));
 		}
 
-		return arr;
+	}
+
+	public static int findMaxLength(ArrayList<ArrayList<Integer>> list) {
+
+		int[] sizes = new int[list.size()];
+		int index = 0;
+		for(ArrayList<Integer> l : list) {
+			sizes[index] = l.size();
+			index++;
+		}
+		sizes = bubbleSort(sizes);
+		return sizes[sizes.length - 1];
+	}
+
+	public static int findMaxValue(int[] arr) {
+		int[] sorted = arr;
+		sorted = bubbleSort(arr);
+		return sorted[sorted.length - 1];
+	}
+
+	public static int[] concatArraysInList(ArrayList<int[]> list) {
+
+		if(list.size() == 0) throw new IllegalArgumentException("No arrays in list.");
+		else if(list.size() == 1) return list.get(0);
+		else if(list.size() == 2) return concatArrays(list.get(0), list.get(1));
+		else {
+			int[] combined = concatArrays(list.get(0), list.get(1));
+			int[] temp;
+			for(int i = 2; i < list.size(); i++) {
+				temp = new int[combined.length];
+				temp = combined;
+				combined = new int[concatArrays(temp, list.get(i)).length];
+				combined = concatArrays(temp, list.get(i));
+			}
+			return combined;
+		}
+
 	}
 
 }
